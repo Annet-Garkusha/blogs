@@ -1,0 +1,32 @@
+$colorWhite: #ffffff;
+$colorGreen: #52c41a;
+$colorBlack: #000000;
+
+.header {
+  display: flex;
+  background-color: $colorWhite;
+  height: 60px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 15px;
+  .title {
+    font-size: 18px;
+    color: $colorBlack;
+  }
+  .buttons {
+    & button {
+      background-color: $colorWhite;
+      font-size: 18px;
+      border: none;
+      padding: 10px;
+      margin-right: 10px;
+      border: 1px solid $colorWhite;
+      &:hover,
+      &:focus {
+        cursor: pointer;
+        border: 1px solid $colorGreen;
+        border-radius: 5px;
+      }
+    }
+  }
+}
