@@ -21,11 +21,13 @@ $colorBlack: #000000;
       padding: 10px;
       margin-right: 10px;
       border: 1px solid $colorWhite;
+      color: $colorBlack;
       &:hover,
       &:focus {
         cursor: pointer;
         border: 1px solid $colorGreen;
         border-radius: 5px;
+        color: $colorGreen;
       }
     }
   }

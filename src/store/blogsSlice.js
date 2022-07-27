@@ -64,10 +64,6 @@ const blogsSlice = createSlice({
       state.page = action.payload.articlesCount;
     },
     [fetchArticleOne.fulfilled]: (state, action) => {
-      console.log(
-        action.payload.article,
-        "Это приходит при получении ответа в редаксе"
-      );
       state.oneArticle = [{ ...action.payload.article }];
       state.isLoading = false;
       state.error = false;

@@ -14,14 +14,18 @@ const Header = () => {
           <div className={styles.title}>Realworld Blog</div>
         </Link>
         <div className={styles.buttons}>
-          <button>Sign In</button>
+          <Link to="/sign-in">
+            <button>Sign In</button>
+          </Link>
 
-          <button>Sign Up</button>
+          <Link to="/sign-up">
+            <button>Sign Up</button>
+          </Link>
         </div>
       </div>
-      <Outlet />
       {isLoading && <Spinner />}
       {error && <Error />}
+      <Outlet />
     </>
   );
 };

@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { ArticleItem } from "../Article-item/ArticleItem";
+import { ArticleItem } from "../../Article-item/ArticleItem";
 import styles from "./ArticleList.module.scss";
-import { fetchArticle } from "../../store/blogsSlice";
+import { fetchArticle } from "../../../store/blogsSlice";
 import { Pagination } from "antd";
 
 const ArticleList = () => {
@@ -16,7 +16,7 @@ const ArticleList = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchArticle({ pageNumber }));
+    dispatch(fetchArticle({ pageNumber: pageNumber * 6 - 6 }));
   }, [dispatch, pageNumber]);
 
   return (

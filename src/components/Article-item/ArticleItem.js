@@ -1,6 +1,6 @@
 import styles from "./ArticleItem.module.scss";
 import likes from "./likes.svg";
-
+import avatar from "./avatar.svg";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
@@ -19,7 +19,7 @@ const ArticleItem = ({
     <div className={styles.item}>
       <div className={styles.title}>
         <Link to={`/${slug}`}>
-          <p>{title}</p>
+          <p>{title ? title : "Some article title"}</p>
         </Link>
 
         <img alt="like" src={likes}></img>
@@ -40,8 +40,11 @@ const ArticleItem = ({
           <p>{author.username}</p>
           <span>{date}</span>
         </div>
-
-        <img className={styles.avatar} alt="avatar" src={author.image}></img>
+        {author.image ? (
+          <img className={styles.avatar} alt="avatar" src={author.image}></img>
+        ) : (
+          <img className={styles.avatar} alt="avatar" src={avatar}></img>
+        )}
       </div>
     </div>
   );

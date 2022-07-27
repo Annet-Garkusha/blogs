@@ -1,13 +1,15 @@
 $colorWhite: #ffffff;
 $colorBlue: #1890ff;
-$colorBlack: #000000;
+$colorBlack: #000;
 $colorGrey: rgba(0, 0, 0, 0.5);
-.item {
+
+.items {
+  height: auto;
   background-color: $colorWhite;
   margin: 26px auto;
   width: 940px;
-  height: 180px;
-  padding: 10px;
+  height: auto;
+  padding: 15px;
   box-sizing: border-box;
   border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -31,11 +33,13 @@ $colorGrey: rgba(0, 0, 0, 0.5);
   .text {
     width: 680px;
     margin-top: 7px;
+    color: $colorGrey;
   }
   .taglist {
-    border: 1px solid $colorBlack;
+    border: 1px solid $colorGrey;
     padding: 2px;
     margin-right: 2px;
+    color: $colorGrey;
   }
   .author {
     display: flex;
@@ -59,5 +63,8 @@ $colorGrey: rgba(0, 0, 0, 0.5);
         color: $colorGrey;
       }
     }
+  }
+  .body {
+    font-size: 18px;
   }
 }
