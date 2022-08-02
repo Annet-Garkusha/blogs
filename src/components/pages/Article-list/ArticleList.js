@@ -20,19 +20,21 @@ const ArticleList = () => {
   }, [dispatch, pageNumber]);
 
   return (
-    <div className={styles.wrapper}>
-      {articles.map((item) => (
-        <ArticleItem key={item.createdAt} {...item} />
-      ))}
-      <Pagination
-        showSizeChanger={false}
-        total={page}
-        style={{ display: "flex", justifyContent: "center" }}
-        onChange={(e) => onChangePage(e)}
-        current={pageNumber}
-        pageSize={6}
-      />
-    </div>
+    <>
+      <div className={styles.wrapper}>
+        {articles.map((item) => (
+          <ArticleItem key={item.createdAt} {...item} />
+        ))}
+        <Pagination
+          showSizeChanger={false}
+          total={page}
+          style={{ display: "flex", justifyContent: "center" }}
+          onChange={(e) => onChangePage(e)}
+          current={pageNumber}
+          pageSize={6}
+        />
+      </div>
+    </>
   );
 };
 

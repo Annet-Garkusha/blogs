@@ -5,30 +5,48 @@ $colorBlack: #000000;
 .header {
   display: flex;
   background-color: $colorWhite;
-  height: 60px;
+  height: 70px;
   align-items: center;
   justify-content: space-between;
   padding: 0px 15px;
   .title {
     font-size: 18px;
     color: $colorBlack;
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid $colorWhite;
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      border: 1px solid $colorGreen;
+      border-radius: 5px;
+      color: $colorGreen;
+    }
   }
-  .buttons {
-    & button {
-      background-color: $colorWhite;
-      font-size: 18px;
-      border: none;
-      padding: 10px;
-      margin-right: 10px;
-      border: 1px solid $colorWhite;
-      color: $colorBlack;
-      &:hover,
-      &:focus {
-        cursor: pointer;
-        border: 1px solid $colorGreen;
-        border-radius: 5px;
-        color: $colorGreen;
-      }
+  button {
+    background-color: $colorWhite;
+    font-size: 18px;
+    border: none;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid $colorWhite;
+    color: $colorBlack;
+    margin-left: 10px;
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      border: 1px solid $colorGreen;
+      border-radius: 5px;
+      color: $colorGreen;
+    }
+  }
+  .userlogin {
+    display: flex;
+    align-items: baseline;
+    .avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
     }
   }
 }

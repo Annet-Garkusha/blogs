@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchArticleOne } from "../../store/blogsSlice";
 import styles from "./OneArticle.module.scss";
+import ReactMarkdown from "react-markdown";
 
 import likes from "../Article-item/likes.svg";
 
@@ -58,7 +59,10 @@ const OneArticle = () => {
             ></img>
           </div>
 
-          <div className={styles.body}>{oneArticle[0]?.body}</div>
+          <ReactMarkdown
+            className={styles.body}
+            children={oneArticle[0]?.body}
+          ></ReactMarkdown>
         </div>
       </>
     );

@@ -1,15 +1,15 @@
 import "antd/dist/antd.css";
-import { useSelector } from "react-redux";
+
 import { Routes, Route } from "react-router-dom";
 import { ArticleList } from "../pages/Article-list/ArticleList";
 import { Header } from "../Header/Header";
-import { Spinner } from "../Spinner/Spinner";
-import { Error } from "../Error/Error";
 
 import styles from "./App.module.scss";
 import { OneArticle } from "../One-article/OneArticle";
 import { SignIn } from "../pages/SignIn/SignIn";
 import { SignUp } from "../pages/SignUp/SignUp";
+import { EditProfile } from "../pages/EditProfile/EditProfile";
+import { NewArticle } from "../pages/NewArticle/NewArticle";
 
 function App() {
   // const isLoading = useSelector((state) => state.blogs.isLoading);
@@ -26,6 +26,8 @@ function App() {
             <Route path="/:title" element={<OneArticle />} />
             <Route path="sign-in" element={<SignIn />} />
             <Route path="sign-up" element={<SignUp />} />
+            <Route path="profile" element={<EditProfile />} />
+            <Route path="new-article" element={<NewArticle />} />
           </Route>
         </Routes>
       </div>
