@@ -90,9 +90,11 @@ export const usersProfile = createAsyncThunk('users/usersProfile', async (props,
       },
       body: JSON.stringify({ user: { ...user } }),
     });
+
     if (!res.ok) {
       throw new Error(`${res.status}`);
     }
+    localStorage.setItem('isLoggin', true);
     return await res.json();
   } catch (error) {
     return rejectWithValue(error);
@@ -108,6 +110,7 @@ const usersSlice = createSlice({
     token: false,
     isLoggin: false,
     image: null,
+    errorMessage: null,
   },
   reducers: {
     setUserLogout(state) {
@@ -142,6 +145,9 @@ const usersSlice = createSlice({
       state.email = action.payload.user.email;
       state.password = action.payload.user.password;
       state.token = localStorage.setItem('token', action.payload.user.token);
+    },
+    [usersProfile.rejected]: (state) => {
+      state.errorMessage = 'Email or password: "is invalid"';
     },
   },
 });

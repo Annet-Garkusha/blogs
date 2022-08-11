@@ -19,6 +19,7 @@ const SignIn = () => {
   const dispatch = useDispatch();
 
   const isLoggin = useSelector((state) => state.users.isLoggin);
+  const errorMessage = useSelector((state) => state.users.errorMessage);
   const token = localStorage.getItem('token');
 
   const nav = useNavigate();
@@ -27,12 +28,11 @@ const SignIn = () => {
     const email = getValues('email');
     const password = getValues('password');
     dispatch(usersProfile({ email, password }));
-    localStorage.setItem('isLoggin', true);
   };
 
   useEffect(() => {
-    dispatch(getCurrentUser(token));
-  }, []);
+    if (isLoggin) dispatch(getCurrentUser(token));
+  }, [isLoggin]);
 
   useEffect(() => {
     if (isLoggin) {
@@ -74,6 +74,7 @@ const SignIn = () => {
                 ></input>
                 <p className={styles.required}>{errors.password?.message}</p>
               </label>
+              <div className={styles.required}>{errorMessage ? errorMessage : null}</div>
 
               <div>
                 <button className={styles.login}>Login</button>

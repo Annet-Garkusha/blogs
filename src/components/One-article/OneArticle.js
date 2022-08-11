@@ -72,7 +72,9 @@ const OneArticle = () => {
                   <img alt="like" src={likes}></img>
                 </button>
               ) : (
-                <img alt="like" src={likes}></img>
+                <div className={styles.likes}>
+                  <img alt="like" src={likes}></img>
+                </div>
               )}
 
               <span>{oneArticle[0]?.favoritesCount}</span>
