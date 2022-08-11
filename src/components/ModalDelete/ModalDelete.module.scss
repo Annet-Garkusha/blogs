@@ -1,0 +1,41 @@
+$colorWhite: #fff;
+$colorTextModal: #595959;
+$colorBlue: #1890ff;
+$colorGreyLight: #d9d9d9;
+
+.container {
+  width: 240px;
+  height: 104px;
+  background-color: $colorWhite;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  .content {
+    padding: 12px;
+    font-size: 14px;
+    color: $colorTextModal;
+
+    img {
+      margin-right: 9px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 11px;
+      button {
+        background-color: $colorWhite;
+        border: 1px solid $colorGreyLight;
+        border-radius: 4px;
+        &:hover {
+          cursor: pointer;
+          background-color: $colorBlue;
+          color: $colorWhite;
+        }
+      }
+      .no {
+        margin-right: 8px;
+      }
+    }
+  }
+}

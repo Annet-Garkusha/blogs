@@ -2,6 +2,7 @@ $colorWhite: #ffffff;
 $colorBlue: #1890ff;
 $colorBlack: #000000;
 $colorGrey: rgba(0, 0, 0, 0.5);
+$colorRed: #ff0707;
 .item {
   background-color: $colorWhite;
   margin: 26px auto;
@@ -12,6 +13,7 @@ $colorGrey: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: relative;
+
   .title {
     font-size: 20px;
     color: $colorBlue;
@@ -20,12 +22,24 @@ $colorGrey: rgba(0, 0, 0, 0.5);
     flex-wrap: wrap;
     width: 83%;
     & p {
-      margin: 0 7px 0 0;
+      margin: 0 13px 0 0;
     }
     & span {
       font-size: 15px;
       color: $colorBlack;
       margin-left: 5px;
+    }
+    .likes {
+      border: none;
+      background-color: $colorWhite;
+      padding: 0;
+      vertical-align: middle;
+      &:hover {
+        cursor: pointer;
+      }
+      .component {
+        vertical-align: middle;
+      }
     }
   }
   .text {

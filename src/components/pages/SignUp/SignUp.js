@@ -1,12 +1,10 @@
-import styles from "../SignIn/SignIn.module.scss";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, Navigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { usersAutorization } from "../../../store/usersSlice";
-import { getCurrentUser } from "../../../store/usersSlice";
-import { Navigate } from "react-router-dom";
+import { usersAutorization, getCurrentUser } from '../../../store/usersSlice';
+import styles from '../SignIn/SignIn.module.scss';
 
 const SignUp = () => {
   const {
@@ -15,16 +13,12 @@ const SignUp = () => {
     getValues,
     formState: { errors },
   } = useForm({
-    mode: "onBlur",
+    mode: 'onBlur',
   });
 
   const dispatch = useDispatch();
-  const username = getValues("username");
-  const email = getValues("email");
-  const password = getValues("password");
-  const isLoggin = useSelector((state) => state.users.isLoggin);
-  const token = localStorage.getItem("token");
-  console.log("TL", token);
+
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     if (token) {
@@ -33,12 +27,15 @@ const SignUp = () => {
   }, [token]);
 
   const onSubmit = () => {
-    console.log("username", username, password, email);
-    localStorage.setItem("token", token);
+    const username = getValues('username');
+    const email = getValues('email');
+    const password = getValues('password');
+    localStorage.setItem('token', token);
+    localStorage.setItem('isLoggin', true);
     dispatch(usersAutorization({ username, email, password }));
   };
+  const isLoggin = localStorage.getItem('isLoggin');
 
-  console.log("token1", !!token);
   return (
     <>
       {isLoggin ? (
@@ -46,26 +43,22 @@ const SignUp = () => {
       ) : (
         <div className={styles.wrapper}>
           <div className={styles.container}>
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className={styles.form}
-              action="#"
-            >
+            <form onSubmit={handleSubmit(onSubmit)} className={styles.form} action="#">
               <h2 className={styles.title}>Create new account</h2>
               <label>
                 <div className={styles.description}>Username</div>
                 <input
                   type="text"
                   placeholder="some-username"
-                  {...register("username", {
-                    required: "Username is required",
+                  {...register('username', {
+                    required: 'Username is required',
                     minLength: {
                       value: 3,
-                      message: "Min length Username must be 4 characters",
+                      message: 'Min length Username must be 4 characters',
                     },
                     maxLength: {
                       value: 20,
-                      message: "Max length Username must be 4 characters",
+                      message: 'Max length Username must be 20 characters',
                     },
                   })}
                   className={errors.username && styles.invalid}
@@ -77,8 +70,8 @@ const SignUp = () => {
                 <input
                   type="email"
                   placeholder="Email address"
-                  {...register("email", {
-                    required: "Email address is required",
+                  {...register('email', {
+                    required: 'Email address is required',
                   })}
                   className={errors.email && styles.invalid}
                 ></input>
@@ -89,16 +82,15 @@ const SignUp = () => {
                 <input
                   type="password"
                   placeholder="Password"
-                  {...register("password", {
-                    required: "Password is required",
+                  {...register('password', {
+                    required: 'Password is required',
                     minLength: {
                       value: 6,
-                      message:
-                        "Your password needs to be at least 6 characters.",
+                      message: 'Your password needs to be at least 6 characters.',
                     },
                     maxLength: {
                       value: 40,
-                      message: "your password must be less than 40 characters",
+                      message: 'your password must be less than 40 characters',
                     },
                   })}
                   className={errors.password && styles.invalid}
@@ -110,30 +102,22 @@ const SignUp = () => {
                 <input
                   type="password"
                   placeholder="Password"
-                  {...register("repeatPassword", {
-                    required: "Repeat password is required",
+                  {...register('repeatPassword', {
+                    required: 'Repeat password is required',
                     validate: (match) => {
-                      const password = getValues("password");
-                      return match === password || "Passwords must match";
+                      const password = getValues('password');
+                      return match === password || 'Passwords must match';
                     },
                   })}
                   className={errors.repeatPassword && styles.invalid}
                 ></input>
-                <p className={styles.required}>
-                  {errors.repeatPassword?.message}
-                </p>
+                <p className={styles.required}>{errors.repeatPassword?.message}</p>
               </label>
 
               <hr></hr>
               <div className={styles.data}>
-                <input
-                  type="checkbox"
-                  defaultChecked
-                  className={styles.checkbox}
-                ></input>
-                <span className={styles.description}>
-                  I agree to the processing of my personal information
-                </span>
+                <input type="checkbox" defaultChecked className={styles.checkbox}></input>
+                <span className={styles.description}>I agree to the processing of my personal information</span>
               </div>
               <div>
                 <button className={styles.login}>Create</button>

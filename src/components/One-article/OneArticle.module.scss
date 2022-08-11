@@ -2,6 +2,8 @@ $colorWhite: #ffffff;
 $colorBlue: #1890ff;
 $colorBlack: #000;
 $colorGrey: rgba(0, 0, 0, 0.5);
+$colorRed: #f5222d;
+$colorGreen: #52c41a;
 
 .items {
   height: auto;
@@ -22,18 +24,31 @@ $colorGrey: rgba(0, 0, 0, 0.5);
     flex-wrap: wrap;
     width: 83%;
     & p {
-      margin: 0 7px 0 0;
+      margin: 0 13px 0 0;
     }
     & span {
       font-size: 15px;
       color: $colorBlack;
       margin-left: 5px;
     }
+    .likes {
+      border: none;
+      background-color: $colorWhite;
+      padding: 0;
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
   .text {
-    width: 680px;
-    margin-top: 7px;
+    width: auto;
+    margin: 19px 0;
     color: $colorGrey;
+    display: flex;
+    justify-content: space-between;
+    .description {
+      max-width: 680px;
+    }
   }
   .taglist {
     border: 1px solid $colorGrey;
@@ -66,5 +81,26 @@ $colorGrey: rgba(0, 0, 0, 0.5);
   }
   .body {
     font-size: 18px;
+  }
+  .delete,
+  .edit {
+    background-color: $colorWhite;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 5px;
+    width: 70px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .delete {
+    margin-right: 12px;
+    color: $colorRed;
+    border-color: $colorRed;
+    position: relative;
+  }
+  .edit {
+    color: $colorGreen;
+    border-color: $colorGreen;
   }
 }

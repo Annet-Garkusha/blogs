@@ -1,7 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
-import blogsReducer from "./blogsSlice";
-import usersReducer from "./usersSlice";
-import articlesReducer from "./articlesSlice";
+import { configureStore } from '@reduxjs/toolkit';
+
+import blogsReducer from './blogsSlice';
+import usersReducer from './usersSlice';
+import articlesReducer from './articlesSlice';
 
 export default configureStore({
   reducer: {

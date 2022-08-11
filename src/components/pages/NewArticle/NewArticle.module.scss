@@ -28,7 +28,8 @@ $colorBlue: #1890ff;
         border-color: $colorGrey;
         border-radius: 4px;
       }
-      & input:invalid {
+      & input.invalid,
+      textarea.invalid {
         border: 2px solid $colorRed;
       }
       .description {

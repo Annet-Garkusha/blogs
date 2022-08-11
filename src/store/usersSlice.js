@@ -1,121 +1,106 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-export const usersAutorization = createAsyncThunk(
-  "users/usersAutorization",
-  async (props, { rejectWithValue }) => {
-    try {
-      console.log(props, "props");
-      const { username, email, password } = props;
+import avatar from '../components/Article-item/avatar.svg';
 
-      const user = {
-        username,
-        email,
-        password,
-      };
+export const usersAutorization = createAsyncThunk('users/usersAutorization', async (props, { rejectWithValue }) => {
+  try {
+    const { username, email, password } = props;
 
-      const res = await fetch("https://blog.kata.academy/api/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user: { ...user } }),
-      });
+    const user = {
+      username,
+      email,
+      password,
+    };
 
-      if (!res.ok) {
-        throw new Error(`${res.status}`);
-      }
-      return await res.json();
-    } catch (error) {
-      return rejectWithValue(error);
+    const res = await fetch('https://blog.kata.academy/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user: { ...user } }),
+    });
+
+    if (!res.ok) {
+      throw new Error(`${res.status}`);
     }
+    return await res.json();
+  } catch (error) {
+    return rejectWithValue(error);
   }
-);
+});
 
-export const getCurrentUser = createAsyncThunk(
-  "users/getCurrentUser",
-  async (token, { rejectWithValue }) => {
-    try {
-      console.log(token, "token");
-
-      const res = await fetch("https://blog.kata.academy/api/user", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Token " + token,
-        },
-      });
-      if (!res.ok) {
-        throw new Error(`${res.status}`);
-      }
-      return await res.json();
-    } catch (error) {
-      return rejectWithValue(error);
+export const getCurrentUser = createAsyncThunk('users/getCurrentUser', async (token, { rejectWithValue }) => {
+  try {
+    const res = await fetch('https://blog.kata.academy/api/user', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Token ' + token,
+      },
+    });
+    if (!res.ok) {
+      throw new Error(`${res.status}`);
     }
+    return await res.json();
+  } catch (error) {
+    return rejectWithValue(error);
   }
-);
+});
 
-export const usersEdit = createAsyncThunk(
-  "users/usersEdit",
-  async (props, { rejectWithValue }) => {
-    try {
-      console.log(props);
-      const { email, username, image, password, token } = props;
+export const usersEdit = createAsyncThunk('users/usersEdit', async (props, { rejectWithValue }) => {
+  try {
+    const { email, username, image, password, token } = props;
 
-      const user = {
-        email,
-        token,
-        username,
-        image,
-        password,
-      };
+    const user = {
+      email,
+      token,
+      username,
+      image,
+      password,
+    };
 
-      const res = await fetch("https://blog.kata.academy/api/user", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Token " + token,
-        },
-        body: JSON.stringify({ user: { ...user } }),
-      });
-      if (!res.ok) {
-        throw new Error(`${res.status}`);
-      }
-      return await res.json();
-    } catch (error) {
-      return rejectWithValue(error);
+    const res = await fetch('https://blog.kata.academy/api/user', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Token ' + token,
+      },
+      body: JSON.stringify({ user: { ...user } }),
+    });
+    if (!res.ok) {
+      throw new Error(`${res.status}`);
     }
+    return await res.json();
+  } catch (error) {
+    return rejectWithValue(error);
   }
-);
+});
 
-export const usersProfile = createAsyncThunk(
-  "users/usersProfile",
-  async (props, { rejectWithValue }) => {
-    try {
-      console.log(props, "login");
-      const { email, password } = props;
-      const user = {
-        email,
-        password,
-      };
+export const usersProfile = createAsyncThunk('users/usersProfile', async (props, { rejectWithValue }) => {
+  try {
+    const { email, password } = props;
+    const user = {
+      email,
+      password,
+    };
 
-      const res = await fetch("https://blog.kata.academy/api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user: { ...user } }),
-      });
-      if (!res.ok) {
-        throw new Error(`${res.status}`);
-      }
-      return await res.json();
-    } catch (error) {
-      return rejectWithValue(error);
+    const res = await fetch('https://blog.kata.academy/api/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user: { ...user } }),
+    });
+    if (!res.ok) {
+      throw new Error(`${res.status}`);
     }
+    return await res.json();
+  } catch (error) {
+    return rejectWithValue(error);
   }
-);
+});
 
 const usersSlice = createSlice({
-  name: "users",
+  name: 'users',
   initialState: {
     username: null,
     email: null,
@@ -135,9 +120,9 @@ const usersSlice = createSlice({
       state.username = action.payload.user.username;
       state.email = action.payload.user.email;
       state.password = action.payload.user.password;
-      state.token = localStorage.setItem("token", action.payload.user.token);
+      state.token = localStorage.setItem('token', action.payload.user.token);
       state.isLoggin = true;
-      console.log(state.token, "state token");
+      state.image = avatar;
     },
     [getCurrentUser.fulfilled]: (state, action) => {
       state.email = action.payload.user.email;
@@ -149,16 +134,14 @@ const usersSlice = createSlice({
     [usersEdit.fulfilled]: (state, action) => {
       state.username = action.payload.user.username;
       state.email = action.payload.user.email;
-
       state.image = action.payload.user.image;
-      console.log(action, "action payload");
     },
     [usersProfile.fulfilled]: (state, action) => {
       state.username = action.payload.user.username;
       state.isLoggin = true;
       state.email = action.payload.user.email;
       state.password = action.payload.user.password;
-      state.token = localStorage.setItem("token", action.payload.user.token);
+      state.token = localStorage.setItem('token', action.payload.user.token);
     },
   },
 });

@@ -30,7 +30,7 @@ $colorRed: #f5222d;
         border-color: $colorGrey;
         border-radius: 4px;
       }
-      & input:invalid {
+      & input.invalid {
         border: 2px solid $colorRed;
       }
       .description {

@@ -1,24 +1,20 @@
-import "antd/dist/antd.css";
+import 'antd/dist/antd.css';
 
-import { Routes, Route } from "react-router-dom";
-import { ArticleList } from "../pages/Article-list/ArticleList";
-import { Header } from "../Header/Header";
+import { Routes, Route } from 'react-router-dom';
 
-import styles from "./App.module.scss";
-import { OneArticle } from "../One-article/OneArticle";
-import { SignIn } from "../pages/SignIn/SignIn";
-import { SignUp } from "../pages/SignUp/SignUp";
-import { EditProfile } from "../pages/EditProfile/EditProfile";
-import { NewArticle } from "../pages/NewArticle/NewArticle";
+import { ArticleList } from '../pages/Article-list/ArticleList';
+import { Header } from '../Header/Header';
+import { OneArticle } from '../One-article/OneArticle';
+import { SignIn } from '../pages/SignIn/SignIn';
+import { SignUp } from '../pages/SignUp/SignUp';
+import { EditProfile } from '../pages/EditProfile/EditProfile';
+import { NewArticle } from '../pages/NewArticle/NewArticle';
+
+import styles from './App.module.scss';
 
 function App() {
-  // const isLoading = useSelector((state) => state.blogs.isLoading);
-  // const error = useSelector((state) => state.blogs.error);
-
   return (
     <>
-      {/* {isLoading && <Spinner />}
-      {error && <Error />} */}
       <div className={styles.app}>
         <Routes>
           <Route path="/" element={<Header />}>
@@ -28,6 +24,7 @@ function App() {
             <Route path="sign-up" element={<SignUp />} />
             <Route path="profile" element={<EditProfile />} />
             <Route path="new-article" element={<NewArticle />} />
+            <Route path="articles/:slug/edit" element={<NewArticle />} />
           </Route>
         </Routes>
       </div>

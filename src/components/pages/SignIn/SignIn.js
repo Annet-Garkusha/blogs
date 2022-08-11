@@ -1,11 +1,11 @@
-import styles from "./SignIn.module.scss";
-import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { usersProfile } from "../../../store/usersSlice";
-import { getCurrentUser } from "../../../store/usersSlice";
-import { Navigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
+import { usersProfile, getCurrentUser } from '../../../store/usersSlice';
+
+import styles from './SignIn.module.scss';
 
 const SignIn = () => {
   const {
@@ -14,20 +14,20 @@ const SignIn = () => {
     getValues,
     formState: { errors },
   } = useForm({
-    mode: "onBlur",
+    mode: 'onBlur',
   });
   const dispatch = useDispatch();
 
-  const email = getValues("email");
-  const password = getValues("password");
   const isLoggin = useSelector((state) => state.users.isLoggin);
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
 
   const nav = useNavigate();
 
   const onSubmit = () => {
+    const email = getValues('email');
+    const password = getValues('password');
     dispatch(usersProfile({ email, password }));
-    localStorage.setItem("isLoggin", true);
+    localStorage.setItem('isLoggin', true);
   };
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const SignIn = () => {
 
   useEffect(() => {
     if (isLoggin) {
-      nav("/");
+      nav('/');
     }
   }, [isLoggin]);
 
@@ -47,19 +47,15 @@ const SignIn = () => {
       ) : (
         <div className={styles.wrapper}>
           <div className={styles.container}>
-            <form
-              className={styles.form}
-              action="#"
-              onSubmit={handleSubmit(onSubmit)}
-            >
+            <form className={styles.form} action="#" onSubmit={handleSubmit(onSubmit)}>
               <h2 className={styles.title}>Sign In</h2>
               <label>
                 <div className={styles.description}>Email address</div>
                 <input
                   type="email"
                   placeholder="Email address"
-                  {...register("email", {
-                    required: "Email address is required",
+                  {...register('email', {
+                    required: 'Email address is required',
                   })}
                   className={errors.email && styles.invalid}
                 ></input>
@@ -71,8 +67,8 @@ const SignIn = () => {
                 <input
                   type="password"
                   placeholder="Password"
-                  {...register("password", {
-                    required: "Password is required",
+                  {...register('password', {
+                    required: 'Password is required',
                   })}
                   className={errors.password && styles.invalid}
                 ></input>
